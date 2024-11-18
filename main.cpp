@@ -155,6 +155,7 @@ int main() {
     for (const string &i: unduplicate) {
         cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << i
                 << endl;
+        cout << "\x1b[7m           \x1b[0m" << endl;
         char field[4][4];
 
         for (auto &x: field) {
@@ -169,11 +170,16 @@ int main() {
             field[x][y] = to_string(j)[0];
         }
         for (auto &x: field) {
+            cout << "# ";
+
             for (char y: x) {
                 cout << y << ' ';
             }
+            cout << "#";
             cout << endl;
         }
+        cout << "###########" << endl;
+
         string a;
         cin >> a;
     }
