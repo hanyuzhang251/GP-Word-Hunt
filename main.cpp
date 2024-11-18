@@ -7,18 +7,19 @@
 #include <chrono>
 #include <future>
 
+
 using namespace std;
 
 const int maxDepth = 16;
 std::unordered_set<std::string> dictionary;
 
-std::unordered_map<string, pair<int, int>> order;
+std::unordered_map<string, pair<int, int> > order;
 
 /*absorptivenesses
-abso
-essr
-nsep
-evit
+a b s o
+e s s r
+n s e p
+e v i t
 */
 
 char chars[4][4];
@@ -40,8 +41,9 @@ void dfs(int x, int y, int depth, string word, pair<int, int> currOrder[], bool 
     if (!valid(x, y, depth, vis)) {
         return;
     }
+    vis[x][y] = true;
     ++depth;
-    word += chars[x][y];
+    word.push_back(chars[x][y]);
     currOrder[0] = {depth, -1};
     currOrder[depth] = {x, y};
     if (depth >= 3) {
@@ -69,8 +71,8 @@ void dfs(int x, int y, int depth, string word, pair<int, int> currOrder[], bool 
 void parallelDFS(int x, int y) {
     pair<int, int> order[maxDepth + 1];
     bool vis[4][4];
-    for (auto & vi : vis) {
-        for (bool & j : vi) {
+    for (auto &vi: vis) {
+        for (bool &j: vi) {
             j = false;
         }
     }
@@ -86,7 +88,7 @@ std::string toLowerCase(const std::string &str) {
 }
 
 int main() {
-    std::vector<std::future<void>> futures;
+    std::vector<std::future<void> > futures;
 
     std::cout << "opening didct" << std::endl;
     std::ifstream dictionaryFile("/Users/hanyuzhang/CLionProjects/Sketch/englishdict.txt");
@@ -118,7 +120,7 @@ int main() {
         }
     }
     std::cout << "waiting" << std::endl;
-    for (auto &fut : futures) {
+    for (auto &fut: futures) {
         fut.get();
     }
     std::cout << "done" << std::endl;
@@ -141,7 +143,7 @@ int main() {
     }
     vector<string> unduplicate;
     unduplicate.reserve(words.size());
-for (const auto& i: words) {
+    for (const auto &i: words) {
         unduplicate.push_back(i);
     }
     sort(unduplicate.begin(), unduplicate.end(), compareByLength);
@@ -150,23 +152,24 @@ for (const auto& i: words) {
     for (const auto &i: unduplicate) {
         fout << i << endl;
     }
-    for (const string& i: unduplicate) {
+    for (const string &i: unduplicate) {
         cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << i
-             << endl;
+                << endl;
         char field[4][4];
 
-        for (auto & x : field) {
-            for (char & y : x) {
+        for (auto &x: field) {
+            for (char &y: x) {
                 y = '.';
             }
         }
         for (int j = 1; j <= i.length(); ++j) {
+
             int x = order[i + to_string(j)].first;
             int y = order[i + to_string(j)].second;
             field[x][y] = to_string(j)[0];
         }
-        for (auto & x : field) {
-            for (char y : x) {
+        for (auto &x: field) {
+            for (char y: x) {
                 cout << y << ' ';
             }
             cout << endl;
