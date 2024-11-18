@@ -155,7 +155,7 @@ int main() {
     for (const string &i: unduplicate) {
         cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << i
                 << endl;
-        cout << "\x1b[7m           \x1b[0m" << endl;
+        cout << "###########" << endl;
         char field[4][4];
 
         for (auto &x: field) {
