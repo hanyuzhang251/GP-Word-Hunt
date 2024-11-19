@@ -12,7 +12,7 @@ const std::string dir = "/Users/hanyuzhang/Documents/GitHub/GP-Word-Hunt";
 
 using namespace std;
 
-const int maxDepth = 16;
+const int maxDepth = 10;
 std::unordered_set<std::string> dictionary;
 
 std::unordered_map<string, pair<int, int> > order;
@@ -43,6 +43,7 @@ void dfs(int x, int y, int depth, string word, pair<int, int> currOrder[], bool 
     if (!valid(x, y, depth, vis)) {
         return;
     }
+    if (depth >= maxDepth) return;
     vis[x][y] = true;
     ++depth;
     word.push_back(chars[x][y]);
