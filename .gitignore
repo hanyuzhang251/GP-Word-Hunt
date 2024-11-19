@@ -1,9 +1,9 @@
-cmake-build-debug
-resources
-venv
+cmake-build-debug/
+resources/
+venv/
 check.py
 CMakeLists.txt
-correct
+correct.txt
 englishdict.txt
-words
-SOLUTIONS
+words.txt
+SOLUTIONS.txt
