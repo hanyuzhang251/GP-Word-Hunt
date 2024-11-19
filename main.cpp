@@ -8,6 +8,8 @@
 #include <future>
 
 
+const std::string dir = "/Users/hanyuzhang/Documents/GitHub/GP-Word-Hunt";
+
 using namespace std;
 
 const int maxDepth = 16;
@@ -23,7 +25,7 @@ e v i t
 */
 
 char chars[4][4];
-ofstream fout("/Users/hanyuzhang/CLionProjects/Sketch/correct");
+ofstream fout(dir+"/correct");
 
 bool isEnglishWord(const std::string &word, const std::unordered_set<std::string> &dictionary) {
     return dictionary.find(word) != dictionary.end();
@@ -91,7 +93,7 @@ int main() {
     std::vector<std::future<void> > futures;
 
     std::cout << "opening didct" << std::endl;
-    std::ifstream dictionaryFile("/Users/hanyuzhang/CLionProjects/Sketch/englishdict.txt");
+    std::ifstream dictionaryFile(dir+"/englishdict.txt");
     std::cout << "dict open" << std::endl;
     if (!dictionaryFile.is_open()) {
         std::cout << "dict not open" << std::endl;
@@ -131,7 +133,7 @@ int main() {
     //     }
     // }
     fout.close();
-    ifstream fin("/Users/hanyuzhang/CLionProjects/Sketch/correct");
+    ifstream fin(dir+"/correct");
     unordered_set<string> words;
     if (!fin.is_open()) {
         std::cerr << "Error opening file." << std::endl;
@@ -148,7 +150,7 @@ int main() {
     }
     sort(unduplicate.begin(), unduplicate.end(), compareByLength);
     fin.close();
-    ofstream fout("/Users/hanyuzhang/CLionProjects/Sketch/SOLUTIONS");
+    ofstream fout(dir+"/SOLUTIONS");
     for (const auto &i: unduplicate) {
         fout << i << endl;
     }
